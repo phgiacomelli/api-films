@@ -1,43 +1,65 @@
 ﻿import { Container, MenuBar, ToggleChk, ToggleDarkLight, ToggleBall, MovieList, Movie } from "./styles"
+import { genres } from '../Genres';
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+
 function Home() {
 
     const [movies, setMovies] = useState([])
-    const img_path = 'https://image.tmdb.org/t/p/w500'
+    const imgPath = 'https://image.tmdb.org/t/p/w500'
+
+    // const url = `https://api.themoviedb.org/3/${test}api_key=36a5cf369299f47bcf5680019dc6275d`; 
+    // const popular = `movie/popular?`
+    // const genero = `discover/movie?with_genres=${genre.id}&language=pt-BR&`
+
+    function changeGenre() {
+        var select = document.getElementById("genres");
+        let id = select.options[select.selectedIndex].value;
+        console.log(id)
+        return id;
+    }
+
+
+
+    // useEffect(() => {
+    //         fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${id}&language=pt-BR&api_key=36a5cf369299f47bcf5680019dc6275d`)
+    //             .then(response => response.json())
+    //             .then(data => { setMovies(data.results) })
+    //     }, [])
+
     useEffect(() => {
         // consumindo a API
-        console.log(process.env)
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=36a5cf369299f47bcf5680019dc6275d&language=en-US&page=1`)
             .then(response => response.json())
             .then(data => { setMovies(data.results) })
     }, [])
 
+
     return (
         <Container>
-            <MenuBar>
-                <ToggleChk type="checkbox"/>
-                <ToggleDarkLight>
-                    <FontAwesomeIcon icon={faMoon} color="#f1c40f" />
-                    <FontAwesomeIcon icon={faSun} color="#f39c12" />
-                    <ToggleBall></ToggleBall>
-                </ToggleDarkLight>
-            </MenuBar>
-            <h1>Filmes</h1>
-            <MovieList>
-                {movies.map(movie => {
-                    return (
-                        <Movie key={movie.id}>
-                            <Link to={`/details/${movie.id}`}><img src={`${img_path}${movie.poster_path}`} alt={movie.title} /></Link>
-                            <span>{movie.title}</span>
-                        </Movie>
-                    )
-                })}
-            </MovieList>
+            <h1>TOP 20 Filmes populares</h1>
+            <select id="genres"> {genres.map(genre => {
+                return (
+                    <option value={genre.id}>{genre.name}</option>
+                )
+            })}
+            </select>
+            <Link to={`/genero/${changeGenre}`}><button onClick={changeGenre}>Pesquisar</button></Link>
+            
 
-        </Container>
+            <MovieList> {movies.map(movie => {
+                return (
+                    <Movie key={movie.id}>
+                        <Link to={`/details/${movie.id}`}>
+                            <img src={`${imgPath}${movie.poster_path}`} alt={movie.title} /> </Link>
+                        <span>{movie.title}</span>
+                    </Movie>
+                )
+            })
+            } </MovieList>
+        </Container >
 
     );
 };
