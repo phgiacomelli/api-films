@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './global.css';
-import Home from './pages/Home';
+import Home from './components/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Details from './pages/Details';
-import Genre from './pages/Genres';
+import Details from './components/Details';
+import Genre from './components/Genres';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

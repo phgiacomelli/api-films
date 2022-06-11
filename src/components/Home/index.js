@@ -2,8 +2,8 @@
 import { genres } from '../Genres';
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import CustomizedSwitches from "../Switch/switch";
-
+import CustomizedSwitches from "../Switch";
+import { ThemeProvider } from 'styled-components';
 
 function Home() {
     
@@ -41,28 +41,31 @@ function Home() {
 
 
     return (
-        <Container>
-            <h1>TOP 20 Filmes populares</h1>
-            <select id="genres"> {genres.map(genre => {
-                return (
-                    <option value={genre.id}>{genre.name}</option>
-                )
-            })}
-            </select>
-            <Link to={`/genero/${changeGenre}`}><button onClick={changeGenre}>Pesquisar</button></Link>
-            
-            <CustomizedSwitches/>
-            <MovieList> {movies.map(movie => {
-                return (
-                    <Movie key={movie.id}>
-                        <Link to={`/details/${movie.id}`}>
-                            <img src={`${imgPath}${movie.poster_path}`} alt={movie.title} /> </Link>
-                        <span>{movie.title}</span>
-                    </Movie>
-                )
-            })
-            } </MovieList>
-        </Container >
+
+        <ThemeProvider>
+            <Container>
+                <h1>TOP 20 Filmes populares</h1>
+                <select id="genres"> {genres.map(genre => {
+                    return (
+                        <option value={genre.id}>{genre.name}</option>
+                    )
+                })}
+                </select>
+                <Link to={`/genero/${changeGenre}`}><button onClick={changeGenre}>Pesquisar</button></Link>
+                
+                <CustomizedSwitches/>
+                <MovieList> {movies.map(movie => {
+                    return (
+                        <Movie key={movie.id}>
+                            <Link to={`/details/${movie.id}`}>
+                                <img src={`${imgPath}${movie.poster_path}`} alt={movie.title} /> </Link>
+                            <span>{movie.title}</span>
+                        </Movie>
+                    )
+                })
+                } </MovieList>
+            </Container >
+        </ThemeProvider>
 
     );
 };
