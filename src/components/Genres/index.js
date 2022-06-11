@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
-import { Container, MenuBar, ToggleChk, ToggleDarkLight, ToggleBall, MovieList, Movie } from "../Home/styles"
+import { Container, MovieList, Movie } from "../Home/styles"
 export const genres = [
     {
         id: 28,

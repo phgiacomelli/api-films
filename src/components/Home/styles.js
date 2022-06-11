@@ -1,5 +1,4 @@
-﻿import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
-import styled from "styled-components";
+﻿import styled from "styled-components";
 
 export const Container = styled.div`
     h1 {

@@ -51,7 +51,7 @@ function Home() {
             </select>
             <Link to={`/genero/${changeGenre}`}><button onClick={changeGenre}>Pesquisar</button></Link>
             
-            <CustomizedSwitches></CustomizedSwitches>
+            <CustomizedSwitches/>
             <MovieList> {movies.map(movie => {
                 return (
                     <Movie key={movie.id}>
