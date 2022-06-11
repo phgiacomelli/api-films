@@ -1,11 +1,14 @@
-﻿import { Container, MenuBar, ToggleChk, ToggleDarkLight, ToggleBall, MovieList, Movie } from "./styles"
+﻿import { Container, MovieList, Movie } from "./styles"
 import { genres } from '../Genres';
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+import CustomizedSwitches from "../Switch/switch";
+
 
 function Home() {
+    
+
+
 
     const [movies, setMovies] = useState([])
     const imgPath = 'https://image.tmdb.org/t/p/w500'
@@ -48,7 +51,7 @@ function Home() {
             </select>
             <Link to={`/genero/${changeGenre}`}><button onClick={changeGenre}>Pesquisar</button></Link>
             
-
+            <CustomizedSwitches></CustomizedSwitches>
             <MovieList> {movies.map(movie => {
                 return (
                     <Movie key={movie.id}>
