@@ -4,9 +4,9 @@ import { Container, Sinopse } from "./styles"
 import { TopBar } from "../Home/styles"
 import { ThemeProvider } from "styled-components"
 import MaterialUiSwitch from "../Switch"
-import { darkTheme } from "../../Styles/themes/dark"
-import { lightTheme } from "../../Styles/themes/light"
-import GlobalStyles from "../../Styles/globalStyles"
+import { darkTheme } from "../../styles/themes/dark"
+import { lightTheme } from "../../styles/themes/light"
+import GlobalStyles from "../../styles/globalStyles"
 import Footer from "../Footer"
 
 function Details() {

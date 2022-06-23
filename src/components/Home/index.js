@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { ThemeProvider } from 'styled-components'
 import MaterialUiSwitch from "../Switch"
-import { lightTheme } from "../../Styles/themes/light"
-import { darkTheme } from "../../Styles/themes/dark"
-import GlobalStyles from "../../Styles/globalStyles"
+import { lightTheme } from "../../styles/themes/light"
+import { darkTheme } from "../../styles/themes/dark"
+import GlobalStyles from "../../styles/globalStyles"
 import Footer from "../Footer"
 
 function Home() {
