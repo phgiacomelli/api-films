@@ -1,12 +1,43 @@
-﻿import { useState, useEffect } from "react"
+﻿import React, { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
-import { Container } from "./styles"
+import { Container, Sinopse } from "./styles"
+import { TopBar } from "../Home/styles"
+import { ThemeProvider } from "styled-components"
+import MaterialUiSwitch from "../Switch"
+import { darkTheme } from "../../Styles/themes/dark"
+import { lightTheme } from "../../Styles/themes/light"
+import GlobalStyles from "../../Styles/globalStyles"
+import Footer from "../Footer"
+
 function Details() {
 
     const { id } = useParams()
-
     const [movie, setMovie] = useState({})
     const img_path = 'https://image.tmdb.org/t/p/w500'
+
+    const [theme, setTheme] = useState(() => {
+        const storageValue = localStorage.getItem('dark')
+        if (storageValue === 'true') {
+            return darkTheme
+        } else {
+            return lightTheme
+        }
+    })
+
+    const [isDark, setIsDark] = useState(() => {
+        const storageValue = localStorage.getItem('dark')
+        if (storageValue === 'true') {
+            return false
+        } else {
+            return true
+        }
+    })
+
+    const toggleTheme = () => {
+        setIsDark(!isDark)
+        setTheme(isDark ? darkTheme : lightTheme)
+        localStorage.setItem('dark', isDark)
+    }
 
     useEffect(() => {
 
@@ -22,24 +53,34 @@ function Details() {
                     releaseDate: release_date
                 }
                 setMovie(movie)
+                
             })
-    }, [id]);
+    }, [id])
 
     return (
-        <Container>
-            <div className="movie">
-                <img src={movie.image} alt={movie.sinopse} />
-                <div className="details">
-                    <h1>{movie.title}</h1>
-                    <span>Sinopse: {movie.sinopse}</span>
-                    <span className="release-date">Data de Lançamento: {movie.releaseDate}</span>
-                    <Link to="/">
-                        <button>Voltar</button>
-                    </Link>
-
+        <ThemeProvider theme={theme}>
+            <Container>
+                <GlobalStyles />
+                <TopBar>
+                    <MaterialUiSwitch
+                        onClick={toggleTheme}
+                        checked={!isDark}
+                    />
+                </TopBar>
+                <div className="movie">
+                    <img src={movie.image} alt={movie.sinopse} />
+                    <div className="details">
+                        <h1>{movie.title}</h1>
+                        <Sinopse>Sinopse: {movie.sinopse}</Sinopse>
+                        <span className="release-date">Data de Lançamento: {movie.releaseDate}</span>
+                        <Link to="/">
+                            <button>Voltar</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        </Container>
+                <Footer />
+            </Container>
+        </ThemeProvider>
     )
 }
 

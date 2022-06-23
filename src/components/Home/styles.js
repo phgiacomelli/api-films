@@ -1,51 +1,19 @@
-﻿import styled from "styled-components";
+﻿import styled from "styled-components"
 
 export const Container = styled.div`
     h1 {
         text-align: center;
         margin: 4rem 0;
+        font-size: 200%;
+        
     }
 `
 
-export const MenuBar = styled.div`
+export const TopBar = styled.div`
+    height: 60px;
     display: flex;
-    flex-direction: row;
-    width: 100%;
     justify-content: flex-end;
 `
-export const ToggleChk = styled.input`
-    opacity: 0;
-    position: absolute;
-`
-
-
-export const ToggleBall = styled.div`
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: 22px;
-    width: 22px;
-    transform: translateX(0px);
-    transition: transform 0.2s linear;
-`
-
-export const ToggleDarkLight = styled.label`
-    background-color: #111;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    position: relative;
-    height: 26px;
-    width: 50px;
-    transform: scale(1.2);
-    margin-top: 2vh;
-    margin-right: 3vh;   
-`
-
 
 export const MovieList = styled.ul`
     list-style: none;
@@ -59,6 +27,7 @@ export const Movie = styled.li`
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: ${props => props.theme.colors.text};
 
     img{
         width: 200px;
